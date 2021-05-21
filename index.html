@@ -48,62 +48,58 @@
         // The order matters here, and this may report false positives for unlisted browsers.
         if (sUsrAg.indexOf("Firefox") > -1) {
             sBrowser = "Mozilla Firefox";
-            noSafari()
         } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
             sBrowser = "Samsung Internet";
-            noSafari()
         } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
             sBrowser = "Opera";
-            noSafari()
         } else if (sUsrAg.indexOf("Trident") > -1) {
             sBrowser = "Microsoft Internet Explorer";
-            noSafari()
         } else if (sUsrAg.indexOf("Edge") > -1) {
             sBrowser = "Microsoft Edge";
-            noSafari()
         } else if (sUsrAg.indexOf("Chrome") > -1) {
             sBrowser = "Google Chrome or Chromium";
-            noSafari()
         } else if (sUsrAg.indexOf("Safari") > -1) {
             sBrowser = "Apple Safari";
             const element = document.getElementById("safariDiv")
             element.classList.remove('hidden')
             element.classList.add('visible')
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
         } else {
             sBrowser = "unknown";
             noSafari()
         }
 
-        function noSafari(){
-            const element = document.getElementById("noSafariDiv")
-            element.classList.remove('visible')
-            element.classList.add('hidden')
-        }
-
     </script>
 
-    <div style="top: 20px; left: 60px">
-
-        <h1 id="title" style="color:red">Why Hello There</h1>
-        <h3 class="words" style="color:blue">Our world has changed</h3>
-        <h3 class="words" style="color:blue">And now we are cavemen</h3>
-        <h3 class="words" style="color:blue">Of the virtual age</h3>
-        <br/>
-    </div>
-    <div id="noSafariDiv" class="visible">
-        <h1 id="title" style="color:blue">Please open in Safari</h1>
-    </div>
-    <div id="safariDiv" class="hidden">
-        <h3 class="words" style="color:blue">Click an image</h3>
-        <h3 class="words" style="color:blue">Requires iOS 12 or later</h3>
-    <a href='./droggo_anim.usdz' rel='ar'>
-        <img src='./dragon.jpeg'>
-        </a>
-    </div>
-
-    <a href='./meAnim.usdz' rel='ar'>
-        <img src='./me.png'>
-        </a>
+    <div class="textBlock" >
+        <div>
+            <h1 id="title" style="color:red">Why Hello There</h1>
+            <h3 class="words" style="color:blue">Our world has changed</h3>
+            <h3 class="words" style="color:blue">And now we are cavemen</h3>
+            <h3 class="words" style="color:blue">Of the virtual age</h3>
+            <br/>
+        </div>
+        <div class="visible">
+            <h1 id="noSafari" style="color:black">Please open in Safari</h1>
+        </div>
+        <div id="safariDiv" class="hidden">
+            <div>
+                <h3 class="words" style="color:blue">Click an image</h3>
+                <h3 class="words" style="color:blue">Requires iOS 12 or later</h3>
+            </div>
+            <div>
+            <a href='./droggo_anim.usdz' rel='ar'>
+                <img src='./dragon.jpeg'>
+                </a>
+            </div>
+            <div>
+            <a href='./meAnim.usdz' rel='ar'>
+                <img src='./me.png'>
+                </a>
+            </div>
+        <div>
     </div>
 </body>
 
@@ -113,6 +109,10 @@
     }
     .hidden{
         visibility: hidden;
+    }
+    .textBlock{
+        margin-top: 40px; 
+        margin-left: 60px
     }
 </style>
 
