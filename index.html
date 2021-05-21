@@ -48,6 +48,12 @@
         // The order matters here, and this may report false positives for unlisted browsers.
         if (sUsrAg.indexOf("Firefox") > -1) {
             sBrowser = "Mozilla Firefox";
+            const element = document.getElementById("safariDiv")
+            element.classList.remove('hidden')
+            element.classList.add('visible')
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
         } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
             sBrowser = "Samsung Internet";
         } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
@@ -58,11 +64,17 @@
             sBrowser = "Microsoft Edge";
         } else if (sUsrAg.indexOf("Chrome") > -1) {
             sBrowser = "Google Chrome or Chromium";
+            // const element = document.getElementById("safariDiv")
+            // element.classList.remove('hidden')
+            // element.classList.add('visible')
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
         } else if (sUsrAg.indexOf("Safari") > -1) {
             sBrowser = "Apple Safari";
-            const element = document.getElementById("safariDiv")
-            element.classList.remove('hidden')
-            element.classList.add('visible')
+            // const element = document.getElementById("safariDiv")
+            // element.classList.remove('hidden')
+            // element.classList.add('visible')
             const noSafari = document.getElementById("noSafariDiv")
             noSafari.classList.remove('visible')
             noSafari.classList.add('hidden')
@@ -82,24 +94,24 @@
             <br/>
         </div>
         <div id="noSafariDiv" class="visible">
-            <h2 style="color:black">Please open in Safari</h2>
+            <h2 style="color:black">Please open in a different browser (Safari, Chrome, Firefox)</h2>
         </div>
-        <div id="safariDiv" class="hidden">
-            <div>
-                <p class="words" style="color:blue">Click an image</p>
-                <p class="words" style="color:blue">Requires iOS 12 or later</p>
-            </div>
-            <div>
-            <a href='./droggo_anim.usdz' rel='ar'>
-                <img class='image-width' src='./dragon.jpeg'>
-                </a>
-            </div>
-            <div>
-            <a href='./meAnim.usdz' rel='ar'>
-                <img class='image-width' src='./me.png'>
-                </a>
-            </div>
+        <!-- <div id="safariDiv" class="hidden"> -->
         <div>
+            <p class="words" style="color:blue">Click an image</p>
+            <p class="words" style="color:blue">Requires an iPhone or iPad with iOS 12 or later</p>
+        </div>
+        <div>
+        <a href='./droggo_anim.usdz' rel='ar'>
+            <img class='image-width' src='./dragon.jpeg'>
+            </a>
+        </div>
+        <div>
+        <a href='./meAnim.usdz' rel='ar'>
+            <img class='image-width' src='./me.png'>
+            </a>
+        </div>
+        <!-- <div> -->
     </div>
 </body>
 
