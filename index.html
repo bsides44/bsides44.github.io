@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Three.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js"></script> -->
+    <script type="module" src="./app.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+</head>
+
+<body>
+    <script type="module">
+        // import { App } from './app.js';
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const app = new App();
+        //     window.app = app;
+        // });
+        // flashing words
+        var title = document.getElementById("title")
+        var words = [...document.getElementsByClassName("words")]
+        var ticker = true
+
+        function repeatingFunc() {
+            setTimeout(repeatingFunc, 500);
+            ticker = !ticker
+            ticker ? title.style.color = "black" : title.style.color = "red"
+            words.forEach(word => ticker ? word.style.color = "black" : word.style.color = "blue")
+        }
+
+        setTimeout(repeatingFunc, 500);
+
+        // browser detection
+        var sBrowser, sUsrAg = navigator.userAgent;
+
+        // The order matters here, and this may report false positives for unlisted browsers.
+        if (sUsrAg.indexOf("Firefox") > -1) {
+            sBrowser = "Mozilla Firefox";
+        } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
+            sBrowser = "Samsung Internet";
+        } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
+            sBrowser = "Opera";
+        } else if (sUsrAg.indexOf("Trident") > -1) {
+            sBrowser = "Microsoft Internet Explorer";
+        } else if (sUsrAg.indexOf("Edge") > -1) {
+            sBrowser = "Microsoft Edge";
+        } else if (sUsrAg.indexOf("Chrome") > -1) {
+            sBrowser = "Google Chrome or Chromium";
+        } else if (sUsrAg.indexOf("Safari") > -1) {
+            sBrowser = "Apple Safari";
+            const element = document.getElementById("safariDiv")
+            element.classList.remove('hidden')
+            element.classList.add('visible')
+        } else {
+            sBrowser = "unknown";
+        }
+
+
+
+    </script>
+
+    <!-- <div style="position: absolute; top: 20px; left: 60px"> -->
+    <div style="top: 20px; left: 60px">
+
+        <h1 id="title" style="color:red">Why Hello There</h1>
+        <h3 class="words" style="color:blue">Our world has changed</h3>
+        <h3 class="words" style="color:blue">And now we are cavemen</h3>
+        <h3 class="words" style="color:blue">Of the virtual age</h3>
+    </div>
+    <div id="safariDiv" class="hidden">
+    <a href='./RedDragonAr.usdz' rel='ar'>
+        <img src='./click.jpeg'>
+        </a>
+    </div>
+</body>
+
+<style>
+    .visible{
+        visibility: visible;
+    }
+    .hidden{
+        visibility: hidden;
+    }
+</style>
+
+</html>
