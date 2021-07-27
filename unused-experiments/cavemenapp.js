@@ -1,6 +1,6 @@
 // three.js experiment, unused
 
-import * as THREE from './node_modules/three/src/Three.js';
+import * as THREE from 'three/src/Three.js';
 // import { VRButton } from '../../libs/three/jsm/VRButton.js';
 // import { XRControllerModelFactory } from '../../libs/three/jsm/XRControllerModelFactory.js';
 // import { BoxLineGeometry } from '../../libs/three/jsm/BoxLineGeometry.js';

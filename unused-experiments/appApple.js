@@ -1,10 +1,10 @@
 // three.js experiment, unused
 
-import * as THREE from './node_modules/three/src/Three.js';
+import * as THREE from 'three/src/Three.js';
 import { ARButton } from './ARButton.js';
-import { Stats } from './stats.module.js';
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { FBXLoader } from './node_modules/three/examples/jsm/loaders/FBXLoader.js';
+import { Stats } from './stats.module.js.js.js.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { appleModel } from './meBonesComp.usdz'
 // let mixer;
 
