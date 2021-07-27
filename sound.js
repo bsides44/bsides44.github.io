@@ -60,7 +60,8 @@ window.demoDescription = "A silly and elaborate character that responds to sound
 
         start: (bound) => {
             radius = space.size.minValue().value / 2.5;
-            ctrls = Create.radialPts(space.center, radius, 50, randomNumber(1, 360));
+            // size of circle 5, origin of points randomised
+            ctrls = Create.radialPts(space.center, radius, 5, randomNumber(1, 360));
         },
 
         animate: (time, ftime) => {
@@ -81,11 +82,25 @@ window.demoDescription = "A silly and elaborate character that responds to sound
 
                 // calculate spike shapes based on freqs
                 let freqs = sound.freqDomainTo([bins, 1]);
+
+                // if freq is 0, map values freqs[0-10] onto them
+                let activeFreqsArray = freqs.slice(0, 12)
+                console.log('activeFreqsArray', activeFreqsArray)
+
+                // freqs.map(value => {
+                //     for (let i = 0; i < 10; i++) {
+                //         value.y === 0 ? value.y = activeFreqsArray[i] : value.y = value.y
+                //     }
+                // })
+
+
                 let tris = [];
                 let tindex = 0;
                 let f_acc = 0;
 
-                // MK: The spike at the particular frequency is pushed out
+                // MK: The spike at the particular frequency is pushed out. This is an array of the values/ spikes that our sound hits
+
+
                 let temp;
                 for (let i = 0, len = freqs.length; i < len; i++) {
                     let prev = spikes[(i === 0) ? spikes.length - 1 : i - 1];
@@ -98,7 +113,12 @@ window.demoDescription = "A silly and elaborate character that responds to sound
                         temp = [spikes[i]];
                     } else if (tindex === 1) {
                         let pp = Geom.perpendicular(dp);
-                        temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius)));
+                        // length of responsive spike
+                        // temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius + 100)));
+                        temp.push(spikes[i].$add(pp[1].$unit().multiply((freqs[i].y + 0.1) * radius + 100)));
+
+
+
                     } else if (tindex === 2) {
                         temp.push(spikes[i]);
                         tris.push(temp);
@@ -106,12 +126,15 @@ window.demoDescription = "A silly and elaborate character that responds to sound
 
                     tindex = (i + 1) % 3;
                 }
-
                 // draw spikes
                 let f_scale = f_acc / bins;
                 for (let i = 0, len = tris.length; i < len; i++) {
+                    //spikes
                     form.fillOnly("#30f").polygon(tris[i]);
-                    form.fillOnly(colors[i % colors.length]).point(tris[i][1], freqs[i].y * 10, "circle")
+                    // form.fillOnly(colors[i % colors.length]).point(tris[i][1], freqs[i].y * 10, "circle")
+                    //circles on end of spikes
+                    form.fillOnly(colors[i % colors.length]).point(tris[i][1], 10, "circle")
+
                 }
 
                 // draw "lips" based on time domain data
