@@ -142,16 +142,27 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
                 }
 
                 // draw "lips" based on time domain data
-                let tdata = sound.timeDomainTo([radius, 10], [center.x - radius / 2, 0]).map((t, i) =>
-                    new Group([t.x, center.y - t.y * Num.cycle(i / bins) * (0.5 + 1.5 * f_scale)],
-                        [t.x, center.y + t.y * Num.cycle(i / bins) * (0.5 + 10 * f_scale) + 30])
-                );
+                // let tdata = sound.timeDomainTo([radius, 10], [center.x - radius / 2, 0]).map((t, i) =>
+                //     new Group([t.x, center.y - t.y * Num.cycle(i / bins) * (0.5 + 1.5 * f_scale)],
+                //         [t.x, center.y + t.y * Num.cycle(i / bins) * (0.5 + 10 * f_scale) + 30])
+                // );
 
-                for (let i = 0, len = tdata.length; i < len; i++) {
-                    let t2 = [tdata[i].interpolate(0.25 + 0.2 * f_scale), tdata[i].interpolate(0.5 + 0.3 * f_scale)];
-                    form.strokeOnly("#30f").line(tdata[i]);
-                    form.strokeOnly("#f06", 2).line(t2);
-                }
+                // for (let i = 0, len = tdata.length; i < len; i++) {
+                //     let t2 = [tdata[i].interpolate(0.25 + 0.2 * f_scale), tdata[i].interpolate(0.5 + 0.3 * f_scale)];
+                //     form.strokeOnly("#30f").line(tdata[i]);
+                //     form.strokeOnly("#f06", 2).line(t2);
+                // }
+
+
+                // moving dot
+                // size of bulb
+                let bulb = center.clone().toAngle(-Const.quarter_pi - Const.half_pi, radius / 15, true);
+                // position of dot
+                form.fillOnly("").ellipse(bulb, [70 + 70 * f_scale, 70 + 70 * f_scale], 0 - 1 * f_scale);
+                // response to pointer: -50 is the radius the dot can move
+                let movingDot = bulb.clone().toAngle(bulb.$subtract(space.pointer).angle(), -50, true);
+                // colour/ size of dot
+                form.fill("#fff").points([movingDot], 10 + 2, "circle");
 
                 // draw eyes        
                 // let eyeRight = center.clone().toAngle(-Const.quarter_pi - 0.2, radius / 2, true);
