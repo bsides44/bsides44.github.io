@@ -1,10 +1,7 @@
 // Source code licensed under Apache License 2.0. 
 // Copyright © 2019 William Ngan. (https://github.com/williamngan/pts)
 
-window.demoDescription = "A silly and elaborate character that responds to sound. Music snippet taken from Space Travel Clichés composed by MrGreenH";
-
-// Demo code starts (anonymous function wrapper is optional) ---
-
+window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.";
 (function () {
 
     Pts.quickStart("#pt", "#e2e6ef");
@@ -13,7 +10,7 @@ window.demoDescription = "A silly and elaborate character that responds to sound
     // See this example: http://ptsjs.org/demo/edit/?name=sound.freqDomain
 
     var sound;
-    Sound.load("/assets/sound2.mp4").then(s => {
+    Sound.loadAsBuffer("/assets/sound2.mp4").then(s => {
         sound = s.analyze(bins);
     }).catch(e => console.error(e));
 
@@ -84,15 +81,12 @@ window.demoDescription = "A silly and elaborate character that responds to sound
                 let freqs = sound.freqDomainTo([bins, 1]);
 
                 // if freq is 0, map values freqs[0-10] onto them
-                let activeFreqsArray = freqs.slice(0, 12)
-                console.log('activeFreqsArray', activeFreqsArray)
-
+                // let activeFreqsArray = freqs.slice(0, 12)
                 // freqs.map(value => {
                 //     for (let i = 0; i < 10; i++) {
                 //         value.y === 0 ? value.y = activeFreqsArray[i] : value.y = value.y
                 //     }
                 // })
-
 
                 let tris = [];
                 let tindex = 0;
@@ -117,8 +111,6 @@ window.demoDescription = "A silly and elaborate character that responds to sound
                         // temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius + 100)));
                         temp.push(spikes[i].$add(pp[1].$unit().multiply((freqs[i].y + 0.1) * radius + 100)));
 
-
-
                     } else if (tindex === 2) {
                         temp.push(spikes[i]);
                         tris.push(temp);
@@ -134,7 +126,6 @@ window.demoDescription = "A silly and elaborate character that responds to sound
                     // form.fillOnly(colors[i % colors.length]).point(tris[i][1], freqs[i].y * 10, "circle")
                     //circles on end of spikes
                     form.fillOnly(colors[i % colors.length]).point(tris[i][1], 10, "circle")
-
                 }
 
                 // draw "lips" based on time domain data
@@ -170,8 +161,6 @@ window.demoDescription = "A silly and elaborate character that responds to sound
         }
 
     });
-
-    //// ----
 
     space.bindMouse().bindTouch().play();
 
