@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Maddy's House</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="module" src="./sound.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        .visible {
+            visibility: visible;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .textBlock {
+            margin-top: 40px;
+            margin-left: 60px;
+            font-family: monospace, sans-serif;
+        }
+
+        .image-width {
+            width: 100%;
+            max-width: 700px
+        }
+    </style>
+</head>
+
+<body>
+    <script type="module">
+        // flashing words
+        var title = document.getElementById("title")
+        var words = [...document.getElementsByClassName("words")]
+        var ticker = true
+
+        function repeatingFunc() {
+            setTimeout(repeatingFunc, 500);
+            ticker = !ticker
+            ticker ? title.style.color = "black" : title.style.color = "red"
+            words.forEach(word => ticker ? word.style.color = "black" : word.style.color = "blue")
+        }
+
+        setTimeout(repeatingFunc, 500);
+
+        // browser detection
+        var sBrowser, sUsrAg = navigator.userAgent;
+
+        // The order matters here, and this may report false positives for unlisted browsers.
+        if (sUsrAg.indexOf("Firefox") > -1) {
+            sBrowser = "Mozilla Firefox";
+            const element = document.getElementById("safariDiv")
+            element.classList.remove('hidden')
+            element.classList.add('visible')
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
+        } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
+            sBrowser = "Samsung Internet";
+        } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
+            sBrowser = "Opera";
+        } else if (sUsrAg.indexOf("Trident") > -1) {
+            sBrowser = "Microsoft Internet Explorer";
+        } else if (sUsrAg.indexOf("Edge") > -1) {
+            sBrowser = "Microsoft Edge";
+        } else if (sUsrAg.indexOf("Chrome") > -1) {
+            sBrowser = "Google Chrome or Chromium";
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
+        } else if (sUsrAg.indexOf("Safari") > -1) {
+            sBrowser = "Apple Safari";
+            const noSafari = document.getElementById("noSafariDiv")
+            noSafari.classList.remove('visible')
+            noSafari.classList.add('hidden')
+        } else {
+            sBrowser = "unknown";
+            noSafari()
+        }
+
+    </script>
+
+    <div class="textBlock">
+        <div>
+            <h1 id="title" style="color:red">Why Hello There</h1>
+            <h3 class="words" style="color:blue">Our world has changed</h3>
+            <h3 class="words" style="color:blue">And now we are cavemen</h3>
+            <h3 class="words" style="color:blue">Of the virtual age</h3>
+            <br />
+        </div>
+        <div id="noSafariDiv" class="visible">
+            <h2 style="color:black">Please open in a different browser (Safari, Chrome, Firefox)</h2>
+        </div>
+        <div>
+            <p class="words" style="color:blue">Click an image</p>
+            <p class="words" style="color:blue">Requires an iPhone or iPad with iOS 12 or later</p>
+        </div>
+        <!-- Quicklook automatically turns .usdz into AR on the right device -->
+        <div>
+            <a href='./assets/droggo_anim.usdz' rel='ar'>
+                <img class='image-width' src='./assets/dragon.jpeg'>
+            </a>
+        </div>
+        <div>
+            <a href='./assets/meAnim.usdz' rel='ar'>
+                <img class='image-width' src='./assets/me.png'>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
