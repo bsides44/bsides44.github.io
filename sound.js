@@ -1,25 +1,42 @@
 // Source code licensed under Apache License 2.0. 
 // Copyright © 2019 William Ngan. (https://github.com/williamngan/pts)
 
-window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.";
+window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William Ngan.";
 (function () {
 
     Pts.quickStart("#pt", "#e2e6ef");
 
-    // Note: use Sound.loadAsBuffer instead if you need support for Safari/iOS browser. (as of Apr 2019)
-    // See this example: http://ptsjs.org/demo/edit/?name=sound.freqDomain
-
     var sound;
-    Sound.loadAsBuffer("/assets/sound2.mp4").then(s => {
-        sound = s.analyze(bins);
-    }).catch(e => console.error(e));
-
     var bins = 256;
     var ctrls, radius;
     var colors = ["#f06", "#62e", "#fff", "#fe3", "#0c9"];
+    var bufferLoaded = false;
+
+    // Note: Sound.loadAsBuffer needed for Safari/iOS browser. (as of Apr 2019)
+    // See this example: http://ptsjs.org/demo/edit/?name=sound.freqDomain
+
+    // Buffer and play - work across all browsers but no streaming and more code
+    Sound.loadAsBuffer("/assets/sound2.mp4").then(s => {
+        sound = s;
+        bufferLoaded = true;
+    }).catch(e => console.error(e));
+
+    // Need this because AudioBuffer can only play once
+    function toggle() {
+        if (sound.playing || !bufferLoaded) {
+            sound.stop();
+        } else {
+            sound.createBuffer().analyze(bins); // recreate buffer again
+            sound.start();
+        }
+    }
 
     // Draw play button
     function playButton() {
+        if (!bufferLoaded) {
+            form.fillOnly("#9ab").text([20, 30], "Loading...");
+            return;
+        }
         if (!sound || !sound.playing) {
             form.fillOnly("#f06").rect([[0, 0], [50, 50]]);
             form.fillOnly('#fff').polygon(Triangle.fromCenter([25, 25], 10).rotate2D(Const.half_pi, [25, 25]));
@@ -71,7 +88,7 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                 let center = anchors.centroid();
                 form.fillOnly("#E11414").polygon(curve);
 
-                // initiate spikes array, evenly distributed spikes aroundthe face
+                // initiate spikes array, evenly distributed spikes around the face
                 let spikes = [];
                 for (let i = 0; i < bins; i++) {
                     spikes.push(curve.interpolate(i / bins));
@@ -80,22 +97,20 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                 // calculate spike shapes based on freqs
                 let freqs = sound.freqDomainTo([bins, 1]);
 
+                // heartbeat is only hitting freqs[0-11]. Map these over the whole circle.
+                let activeFreqsArray = freqs.slice(0, 11)
 
-                // if freq is 0, map values freqs[0-10] onto them
-                // let activeFreqsArray = freqs.slice(0, 10)
-
-                // freqs.map(item => {
-                //     for (let i = 0; i < 10; i++){
-                //     // console.log('1 ', activeFreqsArray[i].y)
-                //     item.y = (activeFreqsArray[i] / 25) * i
-                //     }
-                // })
+                freqs.map(item => {
+                    for (let i = 0; i < 10; i++) {
+                        item.y = activeFreqsArray[i].y
+                    }
+                })
 
                 let tris = [];
                 let tindex = 0;
                 let f_acc = 0;
 
-                // MK: The spike at the particular frequency is pushed out. This is an array of the values/ spikes that our sound hits
+                // The spike at the particular frequency is pushed out
                 let temp;
                 for (let i = 0, len = freqs.length; i < len; i++) {
                     let prev = spikes[(i === 0) ? spikes.length - 1 : i - 1];
@@ -110,8 +125,6 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                         let pp = Geom.perpendicular(dp);
                         // length of responsive spike
                         temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius + 100)));
-                        // temp.push(spikes[i].$add(pp[1].$unit().multiply((freqs[i].y + 0.1) * radius + 100)));
-
                     } else if (tindex === 2) {
                         temp.push(spikes[i]);
                         tris.push(temp);
@@ -123,10 +136,9 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                 let f_scale = f_acc / bins;
                 for (let i = 0, len = tris.length; i < len; i++) {
                     //spikes
-                    form.fillOnly("#30f").polygon(tris[i]);
-                    // form.fillOnly(colors[i % colors.length]).point(tris[i][1], freqs[i].y * 10, "circle")
-                    //circles on end of spikes
-                    form.fillOnly(colors[i % colors.length]).point(tris[i][1], 10, "circle")
+                    form.fillOnly("#E11414").polygon(tris[i]);
+                    //circles on end of spikes 
+                    form.fillOnly("#E11414").point(tris[i][1], freqs[i].y * 10, "circle")
                 }
 
                 // draw "lips" based on time domain data
@@ -157,7 +169,7 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
 
         action: (type, x, y) => {
             if (type === "up" && Geom.withinBound([x, y], [0, 0], [50, 50])) {
-                sound.toggle();
+                toggle();
             }
         }
 
