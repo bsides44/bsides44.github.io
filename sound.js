@@ -56,7 +56,7 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
     space.add({
 
         start: (bound) => {
-            radius = space.size.minValue().value / 2.5;
+            radius = space.size.minValue().value / 5;
             // size of circle 5, origin of points randomised
             ctrls = Create.radialPts(space.center, radius, 5, randomNumber(1, 360));
         },
@@ -80,11 +80,14 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                 // calculate spike shapes based on freqs
                 let freqs = sound.freqDomainTo([bins, 1]);
 
+
                 // if freq is 0, map values freqs[0-10] onto them
-                // let activeFreqsArray = freqs.slice(0, 12)
-                // freqs.map(value => {
-                //     for (let i = 0; i < 10; i++) {
-                //         value.y === 0 ? value.y = activeFreqsArray[i] : value.y = value.y
+                // let activeFreqsArray = freqs.slice(0, 10)
+
+                // freqs.map(item => {
+                //     for (let i = 0; i < 10; i++){
+                //     // console.log('1 ', activeFreqsArray[i].y)
+                //     item.y = (activeFreqsArray[i] / 25) * i
                 //     }
                 // })
 
@@ -93,8 +96,6 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                 let f_acc = 0;
 
                 // MK: The spike at the particular frequency is pushed out. This is an array of the values/ spikes that our sound hits
-
-
                 let temp;
                 for (let i = 0, len = freqs.length; i < len; i++) {
                     let prev = spikes[(i === 0) ? spikes.length - 1 : i - 1];
@@ -108,8 +109,8 @@ window.demoDescription = "Digital heartbeats. In PTS, remixed from William Ngan.
                     } else if (tindex === 1) {
                         let pp = Geom.perpendicular(dp);
                         // length of responsive spike
-                        // temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius + 100)));
-                        temp.push(spikes[i].$add(pp[1].$unit().multiply((freqs[i].y + 0.1) * radius + 100)));
+                        temp.push(spikes[i].$add(pp[1].$unit().multiply(freqs[i].y * radius + 100)));
+                        // temp.push(spikes[i].$add(pp[1].$unit().multiply((freqs[i].y + 0.1) * radius + 100)));
 
                     } else if (tindex === 2) {
                         temp.push(spikes[i]);
