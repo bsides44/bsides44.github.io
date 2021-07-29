@@ -1,5 +1,7 @@
 import * as THREE from 'three/build/three.module';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils';
+
+// basic three scene
 // const scene = new THREE.Scene();
 // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -24,6 +26,8 @@ import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtil
 // }
 // init();
 // animate();
+
+// complex interactive cube scene, from https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_points.html
 
 let renderer, scene, camera;
 

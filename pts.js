@@ -1,3 +1,5 @@
+// pts file required for audio heartbeat visualisation  
+
 /*!
  * pts.js 0.10.6 - Copyright © 2017-2021 William Ngan and contributors.
  * Licensed under Apache 2.0 License.
