@@ -11,23 +11,37 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
     var ctrls, radius;
     var colors = ["#f06", "#62e", "#fff", "#fe3", "#0c9"];
     var bufferLoaded = false;
+    var hitButton = true
+    // Better streaming but bad on mobile
+    // Sound.load("/assets/sound2.mp4").then(s => {
+    //     sound = s.analyze(bins);
+    // }).catch(e => console.error(e));
 
-    // Note: Sound.loadAsBuffer needed for Safari/iOS browser. (as of Apr 2019)
+    // Better on mobile but no streaming
     // See this example: http://ptsjs.org/demo/edit/?name=sound.freqDomain
-
-    // Buffer and play - work across all browsers but no streaming and more code
-    Sound.loadAsBuffer("/assets/sound2.mp4").then(s => {
+    Sound.loadAsBuffer("/assets/sound2.mp3").then(s => {
         sound = s;
         bufferLoaded = true;
     }).catch(e => console.error(e));
-
     // Need this because AudioBuffer can only play once
     function toggle() {
-        if (sound.playing || !bufferLoaded) {
-            sound.stop();
-        } else {
-            sound.createBuffer().analyze(bins); // recreate buffer again
-            sound.start();
+        if (!!hitButton) {
+            hitButton = false
+            if (!sound.playing) {
+                sound.createBuffer().analyze(bins); // recreate buffer again
+                sound.start();
+                setInterval(() => {
+                    hitButton = true
+                }, 1000);
+                return
+            }
+            if (sound.playing || !bufferLoaded) {
+                sound.stop();
+                setInterval(() => {
+                    hitButton = true
+                }, 1000);
+                return
+            }
         }
     }
 
@@ -81,7 +95,6 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
         animate: (time, ftime) => {
 
             if (sound && sound.playable) {
-
                 // get b-spline curve and draw face shape
                 let anchors = getCtrlPoints(time);
                 let curve = Curve.bspline(anchors, 4);
@@ -117,7 +130,8 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
                     let dp = spikes[i].$subtract(prev);
                     f_acc += freqs[i].y;
 
-                    if (dp.magnitudeSq() < 2) continue;
+                    //this blocks spikes from working on mobile
+                    // if (dp.magnitudeSq() < 2) continue;
 
                     if (tindex === 0) {
                         temp = [spikes[i]];
@@ -132,6 +146,7 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
 
                     tindex = (i + 1) % 3;
                 }
+
                 // draw spikes
                 let f_scale = f_acc / bins;
                 for (let i = 0, len = tris.length; i < len; i++) {
