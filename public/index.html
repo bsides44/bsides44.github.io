@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Maddy's House</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        .visible {
+            visibility: visible;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .textBlock {
+            margin-top: 40px;
+            margin-left: 60px;
+            font-family: monospace, sans-serif;
+        }
+
+        .image-width {
+            width: 100%;
+            max-width: 700px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="container"></div>
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+        attribute float size;
+        attribute vec3 customColor;
+
+        varying vec3 vColor;
+
+        void main() {
+
+            vColor = customColor;
+
+            vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+            gl_PointSize = size * ( 300.0 / -mvPosition.z );
+
+            gl_Position = projectionMatrix * mvPosition;
+
+        }
+
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+
+        uniform vec3 color;
+        uniform sampler2D pointTexture;
+
+        varying vec3 vColor;
+
+        void main() {
+
+            gl_FragColor = vec4( color * vColor, 1.0 );
+
+            gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+
+            if ( gl_FragColor.a < ALPHATEST ) discard;
+
+        }
+
+    </script>
+    <script type="module" src="../src/storytelling.js"></script> -->
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+</body>
+
+</html>

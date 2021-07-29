@@ -1,32 +1,33 @@
 {
-  "name": "threesample",
+  "name": "bsides44.github.io",
   "version": "1.0.0",
-  "description": "WebXR in three.js",
-  "main": "app.js",
-  "private": true,
+  "description": "My playground",
+  "main": "index.js",
   "scripts": {
-    "test": "test",
-    "start": "serve"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bsides44/threeSample.git"
-  },
-  "keywords": [
-    "webxr",
-    "three"
-  ],
   "author": "bsides44",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bsides44/threeSample/issues"
-  },
-  "homepage": "https://github.com/bsides44/threeSample#readme",
   "dependencies": {
     "pts": "^0.10.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
     "three": "^0.126.1"
   },
   "devDependencies": {
     "serve": "^11.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
