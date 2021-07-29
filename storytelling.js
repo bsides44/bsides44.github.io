@@ -1,5 +1,5 @@
-import * as THREE from 'three/build/three.module';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils';
+import * as THREE from './node_modules/three/build/three.module';
+import { BufferGeometryUtils } from './node_modules/three/examples/jsm/utils/BufferGeometryUtils';
 
 // basic three scene
 // const scene = new THREE.Scene();

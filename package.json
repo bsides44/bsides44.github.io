@@ -2,18 +2,15 @@
   "name": "bsides44.github.io",
   "version": "1.0.0",
   "description": "My playground",
-  "main": "index.js",
+  "main": "storytelling.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "serve",
+    "test": "test"
   },
   "author": "bsides44",
   "dependencies": {
     "pts": "^0.10.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3",
-    "three": "^0.126.1"
+    "three": "^0.131.0"
   },
   "devDependencies": {
     "serve": "^11.3.2"
