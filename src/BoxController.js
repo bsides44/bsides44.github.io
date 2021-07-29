@@ -13,11 +13,8 @@ class BoxController extends Component {
         this.state = {
             buttonsAreRevealled: false,
             storyCompiler: "",
+            disabledButtons: []
         };
-    }
-
-    componentDidUpdate() {
-        // window.scrollTo(0, 0)
     }
 
     handleSubmit(event) {
@@ -53,9 +50,29 @@ class BoxController extends Component {
             story = this.state[id]
         }
         this.setState({
-            storyCompiler: this.state.storyCompiler.concat(' ', story)
+            storyCompiler: this.state.storyCompiler.concat(' ', story),
+            disabledButtons: [...this.state.disabledButtons, id]
         })
+
+        if (this.state.disabledButtons.length == 8) {
+            const anchor = document.getElementsByClassName("story-section")
+            if (anchor[0]) {
+                setTimeout(() => {
+                    anchor[0].scrollIntoView({ behavior: "smooth" })
+                }, 200);
+            }
+        }
     }
+
+    downloadTxtFile = () => {
+        const element = document.createElement("a");
+        const file = new Blob([this.state.storyCompiler], { type: 'text/plain' });
+        element.href = URL.createObjectURL(file);
+        element.download = "TwoDimensionalStory.txt";
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    }
+    // Tx @Chris https://stackoverflow.com/questions/44656610/download-a-string-as-txt-file-in-react/44661948
 
     render() {
 
@@ -63,6 +80,11 @@ class BoxController extends Component {
             <div className="page-wrapper">
                 <div className="intro">
                     <h1>Welcome to the two-dimensional storyteller</h1>
+                    <p> Traditional linear storylines have one dimension: they go in a line, from beginning, to middle, to end.</p>
+                    <p> This worked well for books and movies, because you experience the plot in a set order.</p>
+                    <p> But as we move into a world of mixed, multimedia, interactive and immersive storytelling, we need greater breadth to our storywriting.</p>
+                    <p> Introducing <span style={{ fontWeight: 400 }}>the Two-Dimensional Storyteller</span> - a tool to help you write a story that can go in many directions.</p>
+                    <p> This could be helpful for writing a narrative for an interactive experience, for example.</p>
                     <p> Enter the beginning of your story - this sets up your characters and scene.</p>
                     <p> Then enter story elements that players can choose in a random order.</p>
                     <p> Tip: Make each story element action-based and self-resolving.</p>
@@ -70,7 +92,6 @@ class BoxController extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Begin:
-                        {/* <input type="text" required={true} id="start" onChange={this.handleStart} /> */}
                         <textarea
                             onChange={this.handleStart}
                             required={true}
@@ -167,19 +188,19 @@ class BoxController extends Component {
                         <p>Select buttons in a random order to see how your story will play out.</p>
                     </div>
                     <div className="row">
-                        <button id="1" onClick={this.handleClick}>One</button>
-                        <button id="2" onClick={this.handleClick}>Two</button>
-                        <button id="3" onClick={this.handleClick}>Three</button>
+                        <button id="1" disabled={this.state.disabledButtons.includes("1")} onClick={this.handleClick}>One</button>
+                        <button id="2" disabled={this.state.disabledButtons.includes("2")} onClick={this.handleClick}>Two</button>
+                        <button id="3" disabled={this.state.disabledButtons.includes("3")} onClick={this.handleClick}>Three</button>
                     </div>
                     <div className="row">
-                        <button id="4" onClick={this.handleClick}>Four</button>
-                        <button id="5" onClick={this.handleClick}>Five</button>
-                        <button id="6" onClick={this.handleClick}>Six</button>
+                        <button id="4" disabled={this.state.disabledButtons.includes("4")} onClick={this.handleClick}>Four</button>
+                        <button id="5" disabled={this.state.disabledButtons.includes("5")} onClick={this.handleClick}>Five</button>
+                        <button id="6" disabled={this.state.disabledButtons.includes("6")} onClick={this.handleClick}>Six</button>
                     </div>
                     <div className="row">
-                        <button id="7" onClick={this.handleClick}>Seven</button>
-                        <button id="8" onClick={this.handleClick}>Eight</button>
-                        <button id="9" onClick={this.handleClick}>Nine</button>
+                        <button id="7" disabled={this.state.disabledButtons.includes("7")} onClick={this.handleClick}>Seven</button>
+                        <button id="8" disabled={this.state.disabledButtons.includes("8")} onClick={this.handleClick}>Eight</button>
+                        <button id="9" disabled={this.state.disabledButtons.includes("9")} onClick={this.handleClick}>Nine</button>
                     </div>
                     <div className="story-section">
                         <div className="buttons-intro">
@@ -187,9 +208,11 @@ class BoxController extends Component {
                         </div>
                         <p>{this.state.start}
                             {this.state.storyCompiler}</p>
+                        <br />
+                        <button onClick={this.downloadTxtFile}>Download story</button>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
