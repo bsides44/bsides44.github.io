@@ -1,6 +1,6 @@
 /* top level arrangement */
 .page-wrapper {
-    padding: 100px 20px 20px
+    padding: 100px 20px 20px;
 }
 
 .row {
@@ -148,7 +148,7 @@ form textarea {
     border: 1px solid darkgrey;
     width: 80%;
     height: 100px;
-    /* overflow: scroll; */
+    background-color: #cee6ef;
 }
 
 form textarea:focus{
