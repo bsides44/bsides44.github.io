@@ -112,6 +112,9 @@ button {
 }
 
 .story-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 20px 40px 60px;
 }
 

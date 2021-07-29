@@ -25,6 +25,13 @@ class BoxController extends Component {
         this.setState({
             buttonsAreRevealled: true
         })
+
+        const anchor = document.getElementsByClassName("buttons-section")
+        if (anchor[0]) {
+            setTimeout(() => {
+                anchor[0].scrollIntoView({ behavior: "smooth" })
+            }, 500);
+        }
     }
 
     handleChange(event) {
@@ -154,7 +161,7 @@ class BoxController extends Component {
                     </label><br />
                     <input type="submit" value="Submit" />
                 </form>
-                <div className="buttons-section" style={{ visibility: this.state.buttonsAreRevealled ? "visible" : "visible" }}>
+                <div className="buttons-section" style={{ display: this.state.buttonsAreRevealled ? "flex" : "none" }}>
                     <div className="buttons-intro">
                         <h3>Make your story</h3>
                         <p>Select buttons in a random order to see how your story will play out.</p>
