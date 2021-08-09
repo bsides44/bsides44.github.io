@@ -18,26 +18,18 @@
 
 
 <body style='margin : 0px; overflow: hidden;'>
-    <!-- arjs="sourceType: webcam;" ? -->
     <a-scene embedded arjs>
-        <!-- define your gltf asset -->
         <a-assets>
             <a-asset-item id="bones" src="./assets/crawlspace_bb.gltf"></a-asset-item>
         </a-assets>
-        <!-- create your content here. just a box for now -->
-        <!-- <a-sphere position='0 1 0' radius="1.25" color="red"> -->
-        <!-- </a-sphere> -->
+        <!-- content -->
         <a-entity gltf-model="#bones" scale="0.1 0.1 0.1"></a-entity>
-        <!-- <a-text value=" Hello, World!">
-            </a-text> -->
-        <!-- <a-image src="./assets/me.png"></a-image> -->
         <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
         <a-marker-camera type="pattern" url="./assets/pattern-heartl2.patt">
         </a-marker-camera>
     </a-scene>
-
 </body>
 
 </html>
