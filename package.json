@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "test": "test",
-    "start": "serve"
+    "start": "live-server",
+    "start-node": "serve"
   },
   "repository": {
     "type": "git",

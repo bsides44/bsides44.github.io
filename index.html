@@ -21,16 +21,25 @@
 
 <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
+        <!-- <a-scene embedded arjs light="defaultLightsEnabled: false"> -->
         <a-assets>
             <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
         </a-assets>
-        <!-- content -->
-        <a-entity gltf-model="#fetus" rotation="0 270 90" position="0 3 0" scale="2 2 2" animation-mixer></a-entity>
+
+        <a-camera active="true" position="0 1.2 0"></a-camera>
+
+        <a-entity id="viewer" position="-1 0 -3" scale="0.5 0.5 0.5">
+            <a-text position="1.01 2.49 0" id="weeksText" value="How many weeks?" color="#FFF"></a-text>
+            <a-text position="1 2.5 0" id="weeksText" value="How many weeks?" color="#233654"></a-text>
+        </a-entity>
         <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
-        <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
-        <a-marker-camera type="pattern" url="./assets/pattern-heartl2.patt">
-        </a-marker-camera>
+        <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
+            <a-entity gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer shadow="cast: true; receive: false"></a-entity>
+        </a-marker>
+        <a-entity light="type: ambient; color: #F5D458; intensity: 1.5"></a-entity>
+        <a-entity light="type: directional; color: #F5D458; intensity: 15.5" position="-1 1 0"></a-entity>
+
     </a-scene>
 </body>
 
