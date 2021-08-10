@@ -22,10 +22,10 @@
 <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
         <a-assets>
-            <a-asset-item id="fetus" src="./assets/fetus.gltf"></a-asset-item>
+            <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
         </a-assets>
         <!-- content -->
-        <a-entity gltf-model="#fetus" rotation="0 270 90" position="0 6 0" animation-mixer></a-entity>
+        <a-entity gltf-model="#fetus" rotation="0 270 90" position="0 3 0" scale="2 2 2" animation-mixer></a-entity>
         <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
         <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
