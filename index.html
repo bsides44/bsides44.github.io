@@ -16,23 +16,24 @@
     </script>
     <!-- required for animation -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- required for click handling  -->
+    <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/events.js"></script>
     <!-- custom actions -->
-    <script src="./selectText.js"></script>
+    <script src="./selecttext.js"></script>
 </head>
 
 
 <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs cursor="rayOrigin: mouse">
-        <!-- raycaster="objects: #viewer" -->
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
         <a-assets>
             <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
         </a-assets>
 
-        <a-entity id="viewer" position="-1 0 -3" scale="0.5 0.5 0.5" selecttext class="collidable">
+        <!-- <a-entity id="viewer" selecttext emitevents="true" cursor="rayOrigin: mouse" position="-1 0 -3" scale="0.5 0.5 0.5" class="clickable">
             <a-text position="1.01 2.49 0" id="weeksTextShadow" value="How many weeks?" color="#FFF"></a-text>
             <a-text position="1 2.5 0" id="weeksText" value="How many weeks?" color="#233654"></a-text>
-            <a-text position="1.01 2.31 0" id="shadow4weeks" value="4 weeks" color="#233654" selecttext class="collidable"></a-text>
-            <a-text position="1 2.3 0" id="4weeks" value="4 weeks" color="#F5D458" selecttext class="collidable"></a-text>
+            <a-text position="1.01 2.31 0" id="shadow4weeks" value="4 weeks" color="#233654" selecttext class="clickable"></a-text>
+            <a-text position="1 2.3 0" id="4weeks" value="4 weeks" color="#F5D458" selecttext class="clickable"></a-text>
             <a-text position="1.01 2.11 0" id="shadow5weeks" value="5 weeks" color="#233654"></a-text>
             <a-text position="1 2.1 0" id="5weeks" value="5 weeks" color="#F5D458" selecttext></a-text>
             <a-text position="1.01 1.91 0" id="shadow6weeks" value="6 weeks" color="#233654"></a-text>
@@ -49,18 +50,26 @@
             <a-text position="1 0.9 0" id="6months" value="6 months" color="#F5D458" selecttext></a-text>
             <a-text position="1.01 0.71 0" id="shadow9months" value="9 months" color="#233654"></a-text>
             <a-text position="1 0.7 0" id="9months" value="9 months" color="#F5D458" selecttext></a-text>
-        </a-entity>
+        </a-entity> -->
 
         <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
-        <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
-            <a-entity gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer shadow="cast: true; receive: false"></a-entity>
-        </a-marker>
-        <a-camera active="true" position="0 1.2 0">
-        </a-camera>
+        <!-- <a-marker-camera type="pattern" url="./assets/pattern-heartl2.patt" selectText emitevents="true" cursor="rayOrigin: mouse" id="heart-marker"></a-marker-camera> -->
+
         <!-- camera options to disable grabby hand: look-controls="reverseMouseDrag:true; touchEnabled: false" look-controls-enabled="false" -->
         <!-- this mouse works as a child of the camera ie a look controller, need to adapt it to take over the mouse?
             <a-cursor id="cursor" raycaster fuse="true" fusetimeout="1000"></a-cursor> -->
+
+
+        <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
+            <a-box selecttext emitevents="true" cursor="rayOrigin: mouse" id="heart-marker" material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable">
+                <a-entity id="fetus-model" gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer shadow="cast: true; receive: false"></a-entity>
+        </a-marker>
+        </a-box>
+        <a-entity cursor raycaster="objects: .clickable"></a-entity>
+
+        <a-entity camera></a-entity>
+
         <a-entity light="type: ambient; color: #F5D458; intensity: 1.5"></a-entity>
         <a-entity light="type: directional; color: #F5D458; intensity: 15.5" position="-1 1 0"></a-entity>
 
