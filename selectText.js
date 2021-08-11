@@ -15,13 +15,13 @@ AFRAME.registerComponent('selecttext', {
 
     init: function () {
         console.log('rolling')
-        const myMarker = document.querySelector("#heart-marker");
+        const myMarker = document.querySelector("#weeks-text");
         const aEntity = document.querySelector("#fetus-model");
 
-        // every click, we make our model grow in size :)
         myMarker.addEventListener('click', function (ev, target) {
             console.log('ev', ev)
             console.log('clicked')
+            // if we click myMarker, double the model size
             const intersectedElement = ev && ev.detail && ev.detail.intersection && ev.detail.intersection.object;
             if (intersectedElement) {
                 const scale = aEntity.getAttribute('scale');
