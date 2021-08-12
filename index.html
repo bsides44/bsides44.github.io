@@ -20,15 +20,70 @@
     <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/events.js"></script>
     <!-- custom actions -->
     <script src="./selecttext.js"></script>
+    <script src="./domoverlay.js" type="module"></script>
 </head>
+<style>
+    header {
+        background-color: rgba(255, 255, 255, 0.90);
+        position: relative;
+        padding: 0.5em;
+        left: 0px;
+        top: 180px;
+        z-index: 100
+    }
 
+    #xr-button:hover {
+        background-color: aqua;
+    }
+</style>
 
 <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+        <div id="overlay">
+            <header>
+                <!-- <details open> -->
+                <!-- <summary>Barebones WebXR DOM Overlay</summary> -->
+                <p id="overlay-header">
+                    How many weeks?
+                    <a class="back" href="./index.html">Back</a>
+                </p>
+                <div id="session-info"></div>
+                <div id="warning-zone"></div>
+                <div id="weeks-buttons">
+                    <button id="4weeks" class="weeks-button">
+                        4 weeks
+                    </button>
+                    <button id="5weeks" class="weeks-button">
+                        5 weeks
+                    </button>
+                    <button id="6weeks" class="weeks-button">
+                        6 weeks
+                    </button>
+                    <button id="7weeks" class="weeks-button">
+                        7 weeks
+                    </button>
+                    <button id="8weeks" class="weeks-button">
+                        8 weeks
+                    </button>
+                    <button id="10weeks" class="weeks-button">
+                        10 weeks
+                    </button>
+                    <button id="12weeks" class="weeks-button">
+                        12 weeks
+                    </button>
+                    <button id="20weeks" class="weeks-button">
+                        20 weeks
+                    </button>
+                    <button id="40weeks" class="weeks-button">
+                        40 weeks
+                    </button>
+                </div>
+                <!-- </details> -->
+            </header>
+        </div>
         <a-assets>
             <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
         </a-assets>
-
         <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
         <!-- <a-marker-camera type="pattern" url="./assets/pattern-heartl2.patt" selectText emitevents="true" cursor="rayOrigin: mouse" id="heart-marker"></a-marker-camera> -->
@@ -37,9 +92,9 @@
         <!-- this mouse works as a child of the camera ie a look controller, need to adapt it to take over the mouse?
             <a-cursor id="cursor" raycaster fuse="true" fusetimeout="1000"></a-cursor> -->
 
-        <a-entity selecttext id="weeks-text" emitevents="true" cursor="rayOrigin: mouse" raycaster="objects: .clickable" id="viewer" position="-0.5 0.2 -1" scale="0.3 0.3 0.3">
-            <!-- <a-box material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable"> -->
-            <a-text position="0 0 0" value="How many weeks?" color="#FFF"></a-text>
+        <!-- <a-entity selecttext id="weeks-text" emitevents="true" cursor="rayOrigin: mouse" raycaster="objects: .clickable" id="viewer" position="-0.5 0.2 -1" scale="0.3 0.3 0.3"> -->
+        <!-- <a-box material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable"> -->
+        <!-- <a-text position="0 0 0" value="How many weeks?" color="#FFF"></a-text>
             <a-text position="0 0.01 0" value="How many weeks?" color="#233654"></a-text>
             <a-text position="0 -0.2 0" value="4 weeks" color="#233654"></a-text>
             <a-text position="0 -0.21 0" value="4 weeks" color="#F5D458"></a-text>
@@ -58,9 +113,9 @@
             <a-text position="0 -1.6 0" id="shadow6months" value="6 months" color="#233654"></a-text>
             <a-text position="0 -1.61 0" id="6months" value="6 months" color="#F5D458"></a-text>
             <a-text position="0 -1.8 0" id="shadow9months" value="9 months" color="#233654"></a-text>
-            <a-text position="0 -1.81 0" id="9months" value="9 months" color="#F5D458"></a-text>
-            <!-- </a-box> -->
-        </a-entity>
+            <a-text position="0 -1.81 0" id="9months" value="9 months" color="#F5D458"></a-text> -->
+        <!-- </a-box> -->
+        <!-- </a-entity> -->
 
         <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
             <a-box emitevents="true" cursor="rayOrigin: mouse" raycaster="objects: .clickable" id="heart-marker" material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable">
