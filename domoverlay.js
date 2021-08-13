@@ -6,6 +6,7 @@ let backToBtn = document.getElementById("backToButtons")
 let closeBoxBtn = document.getElementById("closeTextBox")
 let overlay = document.getElementById("overlay-text")
 let closeAR = document.getElementById("close")
+let weekSelector = ""
 
 function checkSupportedState() {
     navigator.xr.isSessionSupported("immersive-ar").then(supported => {
@@ -36,12 +37,16 @@ function initXR() {
 }
 
 function onButtonClicked(button) {
-    title.innerHTML = "Draw a heart on your belly, OR click the heart below and open it on your phone. Then move the heart into your camera feed below, so you can see it on screen";
+    // change text in textbox
+    title.innerHTML = "Draw a heart on your belly, OR click the heart below and open it on your phone. Then move the heart into your camera feed below, so you can see it on screen.";
     backToBtn.style.display = "block"
     closeBoxBtn.style.display = "block"
     weeksButtons.style.visibility = "hidden"
     demoImg.style.display = "block"
-    console.log('button clicked', button.target.id)
+
+    // make chosen asset visible by id
+    weekSelector = button.target.id + "weeks"
+    document.getElementById(weekSelector).object3D.visible = true
 }
 
 function backToButtons() {

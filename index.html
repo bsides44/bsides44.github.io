@@ -5,74 +5,22 @@
     <meta charset=utf-8>
     <title>Maddy's House</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" type="text/css" href="index.css">
     <!-- AFrame section  -->
-    <!-- include A-Frame obviously -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- include ar.js for A-Frame -->
-    <!-- <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> -->
-    <!-- <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js">
     </script>
     <!-- required for animation -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <!-- required for click handling  -->
-    <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/events.js"></script>
-    <!-- custom actions -->
-    <script src="./selecttext.js"></script>
+    <!-- dom events disabled in webxr - use this for text box overlay  -->
     <script src="./domoverlay.js" type="module"></script>
 </head>
-<style>
-    header {
-        background-color: rgba(255, 255, 255, 0.90);
-        position: relative;
-        padding: 0.5em;
-        left: 0px;
-        top: 180px;
-        z-index: 100;
-        font-family: sans-serif;
-    }
-
-    #demo-img {
-        height: 60vh
-    }
-
-    .text-btn {
-        border: none;
-        background-color: transparent;
-        color: blue;
-        text-decoration: underline;
-        padding: 0;
-        font-family: sans-serif;
-    }
-
-    #close {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        font-size: 40px;
-        text-decoration: none;
-        font-family: sans-serif;
-        color: #565656;
-    }
-
-    #close:hover {
-        color: #8e8c8c;
-    }
-
-    button:hover {
-        cursor: pointer;
-    }
-</style>
 
 <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false'>
         <div id="overlay">
             <header id="overlay-content">
                 <a id="close" style="display: none" href="./index.html">X</a>
-
-                <!-- <details open> -->
-                <!-- <summary>Barebones WebXR DOM Overlay</summary> -->
                 <div id="overlay-text">
                     <p id="overlay-title">
                         How many weeks?
@@ -83,31 +31,31 @@
                     <div id="session-info"></div>
                     <div id="warning-zone"></div>
                     <div id="weeks-buttons">
-                        <button id="4weeks" class="weeks-button">
+                        <button id="4" class="weeks-button">
                             4 weeks
                         </button>
-                        <button id="5weeks" class="weeks-button">
+                        <button id="5" class="weeks-button">
                             5 weeks
                         </button>
-                        <button id="6weeks" class="weeks-button">
+                        <button id="6" class="weeks-button">
                             6 weeks
                         </button>
-                        <button id="7weeks" class="weeks-button">
+                        <button id="7" class="weeks-button">
                             7 weeks
                         </button>
-                        <button id="8weeks" class="weeks-button">
+                        <button id="8" class="weeks-button">
                             8 weeks
                         </button>
-                        <button id="10weeks" class="weeks-button">
+                        <button id="10" class="weeks-button">
                             10 weeks
                         </button>
-                        <button id="12weeks" class="weeks-button">
+                        <button id="12" class="weeks-button">
                             12 weeks
                         </button>
-                        <button id="20weeks" class="weeks-button">
+                        <button id="20" class="weeks-button">
                             20 weeks
                         </button>
-                        <button id="40weeks" class="weeks-button">
+                        <button id="40" class="weeks-button">
                             40 weeks
                         </button>
                     </div>
@@ -115,51 +63,19 @@
                         <a href="./assets/heartl2.png" target="_blank" rel="noreferrer nofollower"><img id="demo-img" src="./assets/heartl2.png"></a>
                     </div>
                 </div>
-                <!-- </details> -->
             </header>
         </div>
         <a-assets>
             <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
+            <a-asset-item id="crawlspace" src="./assets/crawlspace_bb.gltf"></a-asset-item>
         </a-assets>
-        <!-- define a camera which will move according to the marker position: must hold up preset marker in camera view to activate -->
+
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
-        <!-- <a-marker-camera type="pattern" url="./assets/pattern-heartl2.patt" selectText emitevents="true" cursor="rayOrigin: mouse" id="heart-marker"></a-marker-camera> -->
-
-        <!-- camera options to disable grabby hand: look-controls="reverseMouseDrag:true; touchEnabled: false" look-controls-enabled="false" -->
-        <!-- this mouse works as a child of the camera ie a look controller, need to adapt it to take over the mouse?
-            <a-cursor id="cursor" raycaster fuse="true" fusetimeout="1000"></a-cursor> -->
-
-        <!-- <a-entity selecttext id="weeks-text" emitevents="true" cursor="rayOrigin: mouse" raycaster="objects: .clickable" id="viewer" position="-0.5 0.2 -1" scale="0.3 0.3 0.3"> -->
-        <!-- <a-box material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable"> -->
-        <!-- <a-text position="0 0 0" value="How many weeks?" color="#FFF"></a-text>
-            <a-text position="0 0.01 0" value="How many weeks?" color="#233654"></a-text>
-            <a-text position="0 -0.2 0" value="4 weeks" color="#233654"></a-text>
-            <a-text position="0 -0.21 0" value="4 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -0.4 0" id="shadow5weeks" value="5 weeks" color="#233654"></a-text>
-            <a-text position="0 -0.41 0" id="5weeks" value="5 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -0.6 0" id="shadow6weeks" value="6 weeks" color="#233654"></a-text>
-            <a-text position="0 -0.61 0" id="6weeks" value="6 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -0.8 0" id="shadow7weeks" value="7 weeks" color="#233654"></a-text>
-            <a-text position="0 -0.81 0" id="7weeks" value="7 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -1 0" id="shadow8weeks" value="8 weeks" color="#233654"></a-text>
-            <a-text position="0 -1.01 0" id="8weeks" value="8 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -1.2 0" id="shadow10weeks" value="10 weeks" color="#233654"></a-text>
-            <a-text position="0 -1.21 0" id="10weeks" value="10 weeks" color="#F5D458"></a-text>
-            <a-text position="0 -1.4 0" id="shadow3months" value="3 months" color="#233654"></a-text>
-            <a-text position="0 -1.41 0" id="3months" value="3 months" color="#F5D458"></a-text>
-            <a-text position="0 -1.6 0" id="shadow6months" value="6 months" color="#233654"></a-text>
-            <a-text position="0 -1.61 0" id="6months" value="6 months" color="#F5D458"></a-text>
-            <a-text position="0 -1.8 0" id="shadow9months" value="9 months" color="#233654"></a-text>
-            <a-text position="0 -1.81 0" id="9months" value="9 months" color="#F5D458"></a-text> -->
-        <!-- </a-box> -->
-        <!-- </a-entity> -->
 
         <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
-            <a-box emitevents="true" cursor="rayOrigin: mouse" raycaster="objects: .clickable" id="heart-marker" material="opacity: 0.0; transparent: true" depth="5" height="5" width="5" class="clickable">
-                <a-entity id="fetus-model" gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer shadow="cast: true; receive: false"></a-entity>
-            </a-box>
+            <a-entity id="4weeks" gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer shadow="cast: true; receive: false" visible="false" modelselector></a-entity>
+            <a-entity id="5weeks" gltf-model="#crawlspace" rotation="0 90 270" scale="0.2 0.2 0.2" shadow="cast: true; receive: false" visible="false" modelselector></a-entity>
         </a-marker>
-        <a-entity cursor raycaster="objects: .clickable"></a-entity>
 
         <a-entity camera></a-entity>
 
