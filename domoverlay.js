@@ -1,11 +1,15 @@
-let title = document.getElementById("overlay-header");
+let title = document.getElementById("overlay-title");
 let weeksButtons = document.getElementById("weeks-buttons");
 let weeksArray = document.getElementsByClassName("weeks-button");
+let demoImg = document.getElementById("demo-img");
+let backToBtn = document.getElementById("backToButtons")
+let closeBoxBtn = document.getElementById("closeTextBox")
+let overlay = document.getElementById("overlay-text")
+let closeAR = document.getElementById("close")
 
 function checkSupportedState() {
     navigator.xr.isSessionSupported("immersive-ar").then(supported => {
-        if (supported) {
-        } else {
+        if (!supported) {
             title.innerHTML = "AR not found";
             weeksButtons.style.visibility = "hidden"
         }
@@ -25,11 +29,32 @@ function initXR() {
         });
         navigator.xr.addEventListener("devicechange", checkSupportedState);
         checkSupportedState();
+        backToBtn.addEventListener("click", backToButtons)
+        closeBoxBtn.addEventListener("click", closeTextBox)
+
     }
 }
 
 function onButtonClicked(button) {
+    title.innerHTML = "Draw a heart on your belly, OR click the heart below and open it on your phone. Then move the heart into your camera feed below, so you can see it on screen";
+    backToBtn.style.display = "block"
+    closeBoxBtn.style.display = "block"
+    weeksButtons.style.visibility = "hidden"
+    demoImg.style.display = "block"
     console.log('button clicked', button.target.id)
+}
+
+function backToButtons() {
+    title.innerHTML = "How many weeks?";
+    weeksButtons.style.visibility = "visible"
+    demoImg.style.display = "none"
+    backToBtn.style.display = "none"
+    closeBoxBtn.style.display = "none"
+}
+
+function closeTextBox() {
+    overlay.style.display = "none"
+    closeAR.style.display = "block"
 }
 
 initXR();

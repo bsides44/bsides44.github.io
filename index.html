@@ -29,54 +29,91 @@
         padding: 0.5em;
         left: 0px;
         top: 180px;
-        z-index: 100
+        z-index: 100;
+        font-family: sans-serif;
     }
 
-    #xr-button:hover {
-        background-color: aqua;
+    #demo-img {
+        height: 60vh
+    }
+
+    .text-btn {
+        border: none;
+        background-color: transparent;
+        color: blue;
+        text-decoration: underline;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    #close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 40px;
+        text-decoration: none;
+        font-family: sans-serif;
+        color: #565656;
+    }
+
+    #close:hover {
+        color: #8e8c8c;
+    }
+
+    button:hover {
+        cursor: pointer;
     }
 </style>
 
 <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
         <div id="overlay">
-            <header>
+            <header id="overlay-content">
+                <a id="close" style="display: none" href="./index.html">X</a>
+
                 <!-- <details open> -->
                 <!-- <summary>Barebones WebXR DOM Overlay</summary> -->
-                <p id="overlay-header">
-                    How many weeks?
-                    <a class="back" href="./index.html">Back</a>
-                </p>
-                <div id="session-info"></div>
-                <div id="warning-zone"></div>
-                <div id="weeks-buttons">
-                    <button id="4weeks" class="weeks-button">
-                        4 weeks
-                    </button>
-                    <button id="5weeks" class="weeks-button">
-                        5 weeks
-                    </button>
-                    <button id="6weeks" class="weeks-button">
-                        6 weeks
-                    </button>
-                    <button id="7weeks" class="weeks-button">
-                        7 weeks
-                    </button>
-                    <button id="8weeks" class="weeks-button">
-                        8 weeks
-                    </button>
-                    <button id="10weeks" class="weeks-button">
-                        10 weeks
-                    </button>
-                    <button id="12weeks" class="weeks-button">
-                        12 weeks
-                    </button>
-                    <button id="20weeks" class="weeks-button">
-                        20 weeks
-                    </button>
-                    <button id="40weeks" class="weeks-button">
-                        40 weeks
-                    </button>
+                <div id="overlay-text">
+                    <p id="overlay-title">
+                        How many weeks?
+                        <a href="./index.html">Back</a>
+                    </p>
+                    <button class="text-btn" id="backToButtons" style="display: none">Back</button>
+                    <button class="text-btn" id="closeTextBox" style="display: none">OK</button>
+                    <div id="session-info"></div>
+                    <div id="warning-zone"></div>
+                    <div id="weeks-buttons">
+                        <button id="4weeks" class="weeks-button">
+                            4 weeks
+                        </button>
+                        <button id="5weeks" class="weeks-button">
+                            5 weeks
+                        </button>
+                        <button id="6weeks" class="weeks-button">
+                            6 weeks
+                        </button>
+                        <button id="7weeks" class="weeks-button">
+                            7 weeks
+                        </button>
+                        <button id="8weeks" class="weeks-button">
+                            8 weeks
+                        </button>
+                        <button id="10weeks" class="weeks-button">
+                            10 weeks
+                        </button>
+                        <button id="12weeks" class="weeks-button">
+                            12 weeks
+                        </button>
+                        <button id="20weeks" class="weeks-button">
+                            20 weeks
+                        </button>
+                        <button id="40weeks" class="weeks-button">
+                            40 weeks
+                        </button>
+                    </div>
+                    <div>
+                        <a href="./assets/heartl2.png" target="_blank" rel="noreferrer nofollower"><img id="demo-img" src="./assets/heartl2.png"></a>
+                    </div>
                 </div>
                 <!-- </details> -->
             </header>
