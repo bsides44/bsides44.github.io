@@ -70,30 +70,21 @@
         </div>
         <a-assets>
             <a-asset-item id="fetus" src="./assets/fetus-transparent4.gltf"></a-asset-item>
-            <a-asset-item id="fetusfour" src="./assets/fetusfourweeks.gltf"></a-asset-item>
-            <a-asset-item id="fetusfive" src="./assets/fetusfiveweeks.gltf"></a-asset-item>
-            <a-asset-item id="fetussix" src="./assets/fetussixweeks.gltf"></a-asset-item>
-            <!-- <a-asset-item id="fetusseven" src="./assets/fetussevenweeks.gltf"></a-asset-item> -->
-            <!-- <a-asset-item id="fetuseight" src="./assets/fetuseightweeks.gltf"></a-asset-item> -->
-            <!-- <a-asset-item id="fetusten" src="./assets/fetustenweeks.gltf"></a-asset-item> -->
-            <!-- <a-asset-item id="fetustwelve" src="./assets/fetustwelveweeks.gltf"></a-asset-item> -->
-            <!-- <a-asset-item id="fetustwenty" src="./assets/fetustwentyweeks.gltf"></a-asset-item> -->
-            <!-- <a-asset-item id="fetusforty" src="./assets/fetusfortyweeks.gltf"></a-asset-item> -->
         </a-assets>
 
         <!-- using custom pattern generator: https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html NOTE use THICK lines (50 stroke). Due to a bug, white background of your original image must be changed to rgb(240, 240, 240) before uploading, for generator to recognise it. -->
 
         <a-marker type="pattern" url="./assets/pattern-heartl2.patt">
-            <a-entity id="4weeks" gltf-model="#fetusfour" rotation="0 270 90" position="0 0 0" scale="0.2 0.2 0.2" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity>
-            <a-entity id="5weeks" gltf-model="#fetusfive" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity>
-            <a-entity id="6weeks" gltf-model="#fetussix" rotation="0 270 90" position="0 0 0" scale="0.6 0.6 0.6" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity>
-            <!-- <a-entity id="7weeks" gltf-model="#fetusseven" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <!-- <a-entity id="8weeks" gltf-model="#fetuseight" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <!-- <a-entity id="10weeks" gltf-model="#fetusten" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <!-- <a-entity id="12weeks" gltf-model="#fetustwelve" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <!-- <a-entity id="20weeks" gltf-model="#fetustwenty" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <!-- <a-entity id="40weeks" gltf-model="#fetusforty" rotation="0 270 90" position="0 0 0" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" shadow="cast: true; receive: false" visible="false"></a-entity> -->
-            <a-entity id="allweeks" gltf-model="#fetus" rotation="0 270 90" position="0 0 0" scale="2 2 2" animation-mixer="loop:repeat" shadow="cast: true; receive: false" visible="false"></a-entity>
+            <a-entity id="4weeks" gltf-model="url(./assets/fetusfourweeks.gltf)" rotation=" 0 270 90" scale="0.2 0.2 0.2" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="5weeks" gltf-model="url(./assets/fetusfiveweeks.gltf)" rotation=" 0 270 90" scale="0.4 0.4 0.4" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="6weeks" gltf-model="url(./assets/fetussixweeks.gltf)" rotation=" 0 270 90" scale="0.6 0.6 0.6" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="7weeks" gltf-model="url(./assets/fetussevenweeks.gltf)" rotation=" 0 270 90" scale="0.8 0.8 0.8" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="8weeks" gltf-model="url(./assets/fetuseightweeks.gltf)" rotation=" 0 270 90" scale="1 1 1" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="10weeks" gltf-model="url(./assets/fetustenweeks.gltf)" rotation=" 0 270 90" scale="1.2 1.2 1.2" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="12weeks" gltf-model="url(./assets/fetustwelveweeks.gltf)" rotation=" 0 270 90" scale="1.4 1.4 1.4" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="20weeks" gltf-model="url(./assets/fetustwentyweeks.gltf)" rotation="0 270 90" scale="4 4 4" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="40weeks" gltf-model="url(./assets/fetusfortyweeks.gltf)" rotation="0 270 90" scale="6 6 6" animation-mixer="loop:pingpong" visible="false"></a-entity>
+            <a-entity id="allweeks" gltf-model="#fetus" rotation="0 270 90" scale="2 2 2" animation-mixer="loop:repeat" visible="false"></a-entity>
         </a-marker>
 
         <a-entity camera></a-entity>
