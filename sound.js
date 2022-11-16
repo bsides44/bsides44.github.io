@@ -48,7 +48,7 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
     // Draw play button
     function playButton() {
         if (!bufferLoaded) {
-            form.fillOnly("#9ab").text([20, 30], "Loading...");
+            form.fillOnly("#9ab").text([20, 30], "P3 Loading...");
             return;
         }
         if (!sound || !sound.playing) {

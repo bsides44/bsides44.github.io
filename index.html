@@ -15,6 +15,35 @@
             height: 100%
         }
 
+        button {
+            width: 250px;
+            border: 1px solid black;
+            font-family: system-ui, sans-serif;
+            background: #74edc5;
+				font-weight: 100;
+            font-size: 18px;
+            line-height: 170%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1.25px;
+            transition: all 200ms linear;
+        }
+        button:hover {
+				background: #02a0a2;
+				border-color: rgba(0, 0, 0, 0.05) !important;  
+				border-width: 1px 0px 0px 1px !important;
+				box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2) !important;
+				font-weight: 300;
+				transition: all 200ms linear;
+				cursor: pointer;
+			}
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
         .visible {
             visibility: visible;
         }
@@ -32,6 +61,15 @@
         .image-width {
             width: 100%;
             max-width: 700px
+        }
+
+        .aframe {
+            margin-top: 100px
+        }
+
+        .footer {
+            margin-top: 200px;
+            margin-bottom: 80px;
         }
 
         @media screen and (max-width: 690px) {
@@ -56,8 +94,8 @@
         function repeatingFunc() {
             setTimeout(repeatingFunc, 500);
             ticker = !ticker
-            ticker ? title.style.color = "black" : title.style.color = "red"
-            words.forEach(word => ticker ? word.style.color = "black" : word.style.color = "blue")
+            ticker ? title.style.color = "black" : title.style.color = "#ef4202"
+            words.forEach(word => ticker ? word.style.color = "black" : word.style.color = "#02a0a2")
         }
 
         setTimeout(repeatingFunc, 500);
@@ -101,18 +139,19 @@
 
     <div class="textBlock">
         <div>
-            <h1 id="title" style="color:red">Why Hello There</h1>
-            <h3 class="words" style="color:blue">Our world has changed</h3>
-            <h3 class="words" style="color:blue">And now we are cavemen</h3>
-            <h3 class="words" style="color:blue">Of the virtual age</h3>
+            <h1 id="title" style="color:#ef4202">Why Hello There</h1>
+            <h3 class="words" style="color:#02a0a2">Our world has changed</h3>
+            <h3 class="words" style="color:#02a0a2">And now we are cavemen</h3>
+            <h3 class="words" style="color:#02a0a2">Of the virtual age</h3>
             <br />
         </div>
         <div id="noSafariDiv" class="visible">
             <h2 style="color:black">Please open in a different browser (Safari, Chrome, Firefox)</h2>
         </div>
         <div>
-            <p class="words" style="color:blue">Click an image</p>
-            <p class="words" style="color:blue">Requires an iPhone or iPad with iOS 12 or later</p>
+            <h3 style="color:#ef4202">WebXR with Quicklook</h3>
+            <p style="color:#02a0a2">Click an image</p>
+            <p style="color:#02a0a2">Requires an iPhone or iPad with iOS 12 or later</p>
         </div>
         <!-- Quicklook automatically turns .usdz into AR on the right device -->
         <div>
@@ -125,11 +164,16 @@
                 <img class='image-width' src='./assets/dragon.jpeg'>
             </a>
         </div>
-        <br/>
-        <div>
-            <h1 id="title" style="color:red">Thanks for visiting Maddy's playground</h1>
-            <h3 class="words" style="color:blue"><a href="https://www.maddyking44.com/#contact" target="_blank" rel="noopener noreferrer">Contact</a></h3>
-            <h3 class="words" style="color:blue"><a href="https://www.maddyking44.com"  target="_blank" rel="noopener noreferrer">Visit maddyking44.com</a></h3>
+        <div class="aframe">
+            <h3 style="color:#ef4202">WebXR with Aframe and AR.js</h3>
+            <p style="color:#02a0a2">Requires Chrome browser</p>
+            <button><a href="https://aframe-web.onrender.com/" target="_blank" rel="noopener noreferrer">Go to page</a></button>
+        </div>
+        <div class="footer">
+            <h1 id="title" style="color:#ef4202">Thanks for visiting Maddy's playground</h1>
+            <button><a href="https://www.maddyking44.com/#contact" target="_blank" rel="noopener noreferrer">Contact</a></button>
+            <br/>
+            <button><a href="https://www.maddyking44.com"  target="_blank" rel="noopener noreferrer">Visit maddyking44.com</a></button>
             <br />
         </div>
     </div>
