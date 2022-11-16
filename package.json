@@ -1,8 +1,8 @@
 {
-  "name": "threesample",
+  "name": "maddys-house",
   "version": "1.0.0",
-  "description": "WebXR in three.js",
-  "main": "app.js",
+  "description": "WebXR playground",
+  "main": "index.html",
   "private": true,
   "scripts": {
     "test": "test",
@@ -10,18 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bsides44/threeSample.git"
+    "url": "git+https://github.com/bsides44/bsides44.github.io"
   },
   "keywords": [
-    "webxr",
-    "three"
+    "webxr"
   ],
   "author": "bsides44",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bsides44/threeSample/issues"
+    "url": "https://github.com/bsides44/bsides44.github.io/issues"
   },
-  "homepage": "https://github.com/bsides44/threeSample#readme",
+  "homepage": "https://github.com/bsides44/bsides44.github.io#readme",
   "dependencies": {
     "pts": "^0.10.6",
     "three": "^0.126.1"
