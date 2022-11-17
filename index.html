@@ -73,7 +73,7 @@
             margin-bottom: 80px;
         }
 
-        .accordion {
+        #accordionOne, #accordionTwo {
             cursor: pointer;
             color:#02a0a2;
             transition: 0.4s;
@@ -106,15 +106,19 @@
             transition: max-height 0.2s ease-out;
         }
 
+        .panel a {
+            text-decoration: underline;
+        }
+
         li {
             line-height: 140%;
             padding-bottom: 10px;
         }
 
-        .carrot-down{
+        #carrot-down{
             visibility: visible
         }
-        .carrot-up{
+        #carrot-up{
             visibility: hidden
         }
 
@@ -184,26 +188,41 @@
 
     </script>
     <script>
-        // hidden text
-        var acc = document.getElementsByClassName("accordion");
-        var carrotDown = document.getElementsByClassName("carrot-down");
-        var carrotUp = document.getElementsByClassName("carrot-up");
-        var i;
-        
-        for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
+        function clickMeOne() {
+            var acc = document.getElementById("accordionOne");
+            var carrotDown = document.getElementById("carrot-down");
+            var carrotUp = document.getElementById("carrot-up");
+            var i;
+            
+            acc.classList.toggle("active");
+            var panel = acc.nextElementSibling;
             if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-            carrotDown.style.visibility = "hidden"
-            carrotUp.style.visibility = "visible"
+                panel.style.maxHeight = null;
+                carrotDown.style.visibility = "hidden"
+                carrotUp.style.visibility = "visible"
             } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-            carrotDown.style.visibility = "visible"
-            carrotUp.style.visibility = "hidden"
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                carrotDown.style.visibility = "visible"
+                carrotUp.style.visibility = "hidden"
             }
-        });
+        }
+        function clickMeTwo() {
+            var acc = document.getElementById("accordionTwo");
+            var carrotDown = document.getElementById("carrot-down");
+            var carrotUp = document.getElementById("carrot-up");
+            var i;
+            
+            acc.classList.toggle("active");
+            var panel = acc.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+                carrotDown.style.visibility = "hidden"
+                carrotUp.style.visibility = "visible"
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                carrotDown.style.visibility = "visible"
+                carrotUp.style.visibility = "hidden"
+            }
         }
     </script>
     <div class="textBlock">
@@ -233,7 +252,7 @@
                 <img class='image-width' src='./assets/dragon.jpeg'>
             </a>
         </div>
-        <button class="accordion"><span class="carrot-down">&#9660;</span><span class="carrot-up">&#9650;</span>How do you do this?</button>
+        <button id="accordionOne" onclick="clickMeOne()"><span id="carrot-down">&#9660;</span><span id="carrot-up">&#9650;</span>How do you do this?</button>
         <div class="panel">
             <ol>
                 <li>Get a free animated 3D model from a website like the <a href="https://assetstore.unity.com/" target="_blank" rel="noopener noreferrer">Unity Asset store</a>, or create your own using a free app such as <a href="https://poly.cam/" target="_blank" rel="noopener noreferrer">Polycam</a>.These generate a 3D model from hundreds of photos. Use the Polycam to take photos of your subject from every angle. Make sure they stay very still. Polycam will stitch the photos together to give you a model.</li>
@@ -247,8 +266,8 @@
         <div class="aframe">
             <h3 style="color:#ef4202">WebXR with Aframe and AR.js</h3>
             <p style="color:#02a0a2">Requires Chrome browser</p>
-            <button><a href="https://aframe-web.onrender.com/" target="_blank" rel="noopener noreferrer">Go to page</a></button>
-            <button class="accordion"><span class="carrot-down">&#9660;</span><span class="carrot-up">&#9650;</span>How do you do this?</button>
+            <a href="https://aframe-web.onrender.com/" target="_blank" rel="noopener noreferrer"><button>Go to page</button></a>
+            <button id="accordionTwo" onclick="clickMeTwo()"><span id="carrot-down">&#9660;</span><span id="carrot-up">&#9650;</span>How do you do this?</button>
                 <div class="panel">
                     <ol>
                         <li>Create your model. Use <a href="https://www.capturingreality.com/" target="_blank" rel="noopener noreferrer">RealityCapture</a> (Windows only) or download a free app such as <a href="https://poly.cam/" target="_blank" rel="noopener noreferrer">Polycam</a>. These generate a 3D model from hundreds of photos. Use RealityCapture or Polycam to take photos of your subject from every angle. Make sure they stay very still. RealityCapture or Polycam will stitch the photos together to give you a model.</li>
@@ -263,9 +282,9 @@
         </div>
         <div class="footer">
             <h1 id="title" style="color:#ef4202">Thanks for visiting Maddy's playground</h1>
-            <button><a href="https://www.maddyking44.com/#contact" target="_blank" rel="noopener noreferrer">Contact</a></button>
+            <a href="https://www.maddyking44.com/#contact" target="_blank" rel="noopener noreferrer"><button>Contact</button></a>
             <br/>
-            <button><a href="https://www.maddyking44.com"  target="_blank" rel="noopener noreferrer">Visit maddyking44.com</a></button>
+            <a href="https://www.maddyking44.com"  target="_blank" rel="noopener noreferrer"><button>Visit maddyking44.com</button></a>
             <br />
         </div>
     </div>
