@@ -25,22 +25,34 @@ window.demoDescription = "Digital heartbeats. Using pts.js, remixed from William
     }).catch(e => console.error(e));
     // Need this because AudioBuffer can only play once
     function toggle() {
-        if (!!hitButton) {
-            hitButton = false
-            if (!sound.playing) {
-                sound.createBuffer().analyze(bins); // recreate buffer again
-                sound.start();
-                setInterval(() => {
-                    hitButton = true
-                }, 1000);
-                return
-            }
-            if (sound.playing || !bufferLoaded) {
-                sound.stop();
-                setInterval(() => {
-                    hitButton = true
-                }, 1000);
-                return
+        if ("ontouchstart" in document.documentElement)
+        {
+            sound.createBuffer().analyze(bins); // recreate buffer again
+            sound.start();
+            setInterval(() => {
+                hitButton = true
+            }, 1000);
+            return
+        }
+        else
+        {
+            if (!!hitButton) {
+                hitButton = false
+                if (!sound.playing) {
+                    sound.createBuffer().analyze(bins); // recreate buffer again
+                    sound.start();
+                    setInterval(() => {
+                        hitButton = true
+                    }, 1000);
+                    return
+                }
+                if (sound.playing || !bufferLoaded) {
+                    sound.stop();
+                    setInterval(() => {
+                        hitButton = true
+                    }, 1000);
+                    return
+                }
             }
         }
     }
