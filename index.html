@@ -93,7 +93,7 @@
         }
 
         /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-        .active, .accordion:hover {
+        .active, #accordionOne:hover, #accordionTwo:hover {
             background-color: #ccc;
         }
 
@@ -115,11 +115,13 @@
             padding-bottom: 10px;
         }
 
-        #carrot-down{
-            visibility: visible
+        #carrot-down, #carrot-down-two{
+            display:inline;
+            margin-right: 5px;
         }
-        #carrot-up{
-            visibility: hidden
+        #carrot-up, #carrot-up-two{
+            display: none;
+            margin-right: 5px;
         }
 
 
@@ -198,30 +200,30 @@
             var panel = acc.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
-                carrotDown.style.visibility = "hidden"
-                carrotUp.style.visibility = "visible"
+                carrotDown.style.display = "none"
+                carrotUp.style.display = "inline"
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
-                carrotDown.style.visibility = "visible"
-                carrotUp.style.visibility = "hidden"
+                carrotDown.style.display = "inline"
+                carrotUp.style.display = "none"
             }
         }
         function clickMeTwo() {
             var acc = document.getElementById("accordionTwo");
-            var carrotDown = document.getElementById("carrot-down");
-            var carrotUp = document.getElementById("carrot-up");
+            var carrotDown = document.getElementById("carrot-down-two");
+            var carrotUp = document.getElementById("carrot-up-two");
             var i;
             
             acc.classList.toggle("active");
             var panel = acc.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
-                carrotDown.style.visibility = "hidden"
-                carrotUp.style.visibility = "visible"
+                carrotDown.style.display = "none"
+                carrotUp.style.display = "inline"
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
-                carrotDown.style.visibility = "visible"
-                carrotUp.style.visibility = "hidden"
+                carrotDown.style.display = "inline"
+                carrotUp.style.display = "none"
             }
         }
     </script>
@@ -267,7 +269,7 @@
             <h3 style="color:#ef4202">WebXR with Aframe and AR.js</h3>
             <p style="color:#02a0a2">Requires Chrome browser</p>
             <a href="https://aframe-web.onrender.com/" target="_blank" rel="noopener noreferrer"><button>Go to page</button></a>
-            <button id="accordionTwo" onclick="clickMeTwo()"><span id="carrot-down">&#9660;</span><span id="carrot-up">&#9650;</span>How do you do this?</button>
+            <button id="accordionTwo" onclick="clickMeTwo()"><span id="carrot-down-two">&#9660;</span><span id="carrot-up-two">&#9650;</span>How do you do this?</button>
                 <div class="panel">
                     <ol>
                         <li>Create your model. Use <a href="https://www.capturingreality.com/" target="_blank" rel="noopener noreferrer">RealityCapture</a> (Windows only) or download a free app such as <a href="https://poly.cam/" target="_blank" rel="noopener noreferrer">Polycam</a>. These generate a 3D model from hundreds of photos. Use RealityCapture or Polycam to take photos of your subject from every angle. Make sure they stay very still. RealityCapture or Polycam will stitch the photos together to give you a model.</li>
