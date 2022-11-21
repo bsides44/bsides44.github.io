@@ -45,6 +45,18 @@
             cursor: pointer;
         }
 
+        .subtitle {
+            font-size: 40px
+        }
+
+        #title {
+            font-size: 100px;
+        }
+
+        #noSafariDiv {
+            text-align: center;
+        }
+
         .visible {
             visibility: visible;
         }
@@ -57,6 +69,19 @@
             margin-top: 40px;
             margin-left: 60px;
             font-family: monospace, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .flex-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center
         }
 
         .image-width {
@@ -65,12 +90,18 @@
         }
 
         .aframe {
-            margin-top: 100px
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center
         }
 
         .footer {
             margin-top: 200px;
             margin-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center
         }
 
         #accordionOne, #accordionTwo {
@@ -88,7 +119,7 @@
             text-align: inherit;
             display: inherit;
             align-items: inherit;
-            justify-content: inherit;
+            justify-content: center;
             letter-spacing: inherit;
         }
 
@@ -104,6 +135,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.2s ease-out;
+            text-align: left;
         }
 
         .panel a {
@@ -132,6 +164,9 @@
             }
             canvas {
                 height: 400px !important;
+            }
+            #title {
+                font-size: 50px;
             }
         }
     </style>
@@ -240,8 +275,8 @@
         <div id="noSafariDiv" class="visible">
             <h2 style="color:black">Please open in a different browser (Safari, Chrome, Firefox)</h2>
         </div>
-        <div>
-            <h3 style="color:#ef4202">WebXR with Quicklook</h3>
+        <div class="center">
+            <h3 class="subtitle" style="color:#ef4202">WebXR with Quicklook</h3>
             <p style="color:#02a0a2">Click an image</p>
             <p style="color:#02a0a2">Requires an iPhone or iPad with iOS 12 or later</p>
         </div>
@@ -268,7 +303,7 @@
             </ol>    
         </div>
         <div class="aframe">
-            <h3 style="color:#ef4202">WebXR with Aframe and AR.js</h3>
+            <h3 class="subtitle" style="color:#ef4202">WebXR with Aframe and AR.js</h3>
             <p style="color:#02a0a2">Requires Chrome or Safari</p>
             <a href="https://aframe-web.onrender.com/" target="_blank" rel="noopener noreferrer"><button>Go to page</button></a>
             <button id="accordionTwo" onclick="clickMeTwo()"><span id="carrot-down-two">&#9660;</span><span id="carrot-up-two">&#9650;</span>How do you do this?</button>
@@ -285,7 +320,7 @@
                 </div>
         </div>
         <div class="footer">
-            <h1 id="title" style="color:#ef4202">Thanks for visiting Maddy's playground</h1>
+            <h3 class="subtitle" style="color:#ef4202">Thanks for visiting Maddy's playground</h1>
             <a href="https://www.maddyking44.com/#fh5co-contact" target="_blank" rel="noopener noreferrer"><button>Contact</button></a>
             <br/>
             <a href="https://www.maddyking44.com"  target="_blank" rel="noopener noreferrer"><button>Visit maddyking44.com</button></a>
